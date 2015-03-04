@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="PictureGallery.Pages.MainContent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:views="clr-namespace:PictureGallery.Views"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="800" d:DesignWidth="480">
+
+    <Grid x:Name="LayoutRoot"
+          Background="#FF05B7C3">
+        <Grid VerticalAlignment="Top">
+            <Image Stretch="UniformToFill"
+                   x:Name="randomRecentPicture"
+                   VerticalAlignment="Center"/>
+        </Grid>
+
+        <controls:Panorama Grid.Row="1"
+                           Foreground="#FF67625B"
+                           FontFamily="Segoe WP Light"
+                           Margin="0, 70, 0, 0">
+            <controls:Panorama.Background>
+                <ImageBrush Stretch="UniformToFill"
+                            ImageSource="../Images/MainPageBackground.png"/>
+            </controls:Panorama.Background>
+            
+            <controls:PanoramaItem Header="{Binding LocalizedStrings.Last7Days, Source={StaticResource Resources}}"
+                                   Margin="0, 80, 0, 0"
+                                   x:Name="recentPivotItem">
+                <views:RecentPhotosView x:Name="recentPhotosView"
+                                        PhotoList="{Binding}"
+                                        Tap="OnRecentImagesTap"/>
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="{Binding LocalizedStrings.HotForToday, Source={StaticResource Resources}}"
+                                   Margin="0, 80, 0, 0"
+                                   x:Name="hotPivotItem">
+                <views:RecentTagsView x:Name="recentTagsView"
+                                      TagList="{Binding}"
+                                      TagTap="OnTagTap"/>
+            </controls:PanoramaItem>
+            
+            <controls:PanoramaItem Header="{Binding LocalizedStrings.Favorites, Source={StaticResource Resources}}"
+                                   Margin="0, 80, 0, 0"
+                                   x:Name="favoritesPivotItem">
+                <views:FavoritesView x:Name="favoritesView"
+                                     FavoriteTap="OnFavoriteTap"/>
+            </controls:PanoramaItem>
+        </controls:Panorama>
+
+        <Image x:Name="logo"
+               Stretch="None"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Source="../Images/logo.png"
+               Margin="25, 25"/>
+    </Grid>
+</UserControl>

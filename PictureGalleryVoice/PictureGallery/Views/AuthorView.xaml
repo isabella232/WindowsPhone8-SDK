@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="PictureGallery.Views.AuthorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    mc:Ignorable="d"
+    x:Name="parent"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}">
+    
+    <Grid x:Name="LayoutRoot">
+        <StackPanel Orientation="Horizontal"
+                    Tap="OnAuthorSelected"
+                    Margin="24, 40, 0, 42"
+                    DataContext="{Binding Author, ElementName=parent}">
+            <Grid>
+                <Image x:Name="authorPicture"
+                           Source="{Binding Picture}"
+                           Stretch="UniformToFill"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                       Width="48"
+                       Height="48"/>
+                <Image Stretch="UniformToFill"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Source="../Pages/Images/buddyMask.png"
+                           Width="48"
+                           Height="48"/>
+            </Grid>
+
+            <StackPanel Margin="12, 0, 0, 0">
+                <TextBlock x:Name="authorName"
+                               Text="{Binding Name}"
+                               Foreground="#FF67615B"
+                               FontSize="22.667"
+                               FontFamily="Segoe WP Semibold"
+                               Margin="0, 0, 0, 2"/>
+                <TextBlock x:Name="authorPhotoCount"
+                               Foreground="#FF8B8581" 
+                               FontSize="22.667" 
+                               FontFamily="Segoe WP Light">
+                    <Run Text="{Binding PhotoCount}"/>
+                    <Run Text="{Binding PhotoCount, Converter={StaticResource PhotoCountConverter}}"/>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <telerikPrimitives:RadBusyIndicator IsRunning="{Binding Loading}"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,2 @@
+In order to run the app, a Flicrk API key is required. The API key can be requested at this URL - http://www.flickr.com/services/apps/create/apply
+Once the key is obtained it must be passed to the constructor of the flickr object in the FlickrServiceProvider.cs class

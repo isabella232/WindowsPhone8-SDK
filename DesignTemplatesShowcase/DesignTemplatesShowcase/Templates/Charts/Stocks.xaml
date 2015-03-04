@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="Telerik.DesignTemplates.WP.Templates.Charts.Stocks"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikChart="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Chart"
+    xmlns:telerikChartSpecialized="clr-namespace:Telerik.Windows.Controls.Chart;assembly=Telerik.Windows.Controls.Chart"
+    xmlns:telerikCharting="clr-namespace:Telerik.Charting;assembly=Telerik.Windows.Controls.Chart"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.Resources>
+            <SolidColorBrush x:Key="GrayedBrush" Color="{StaticResource PhoneSubtleColor}"/>
+
+            <DataTemplate x:Key="trackBallTemplate">
+                <Grid>
+                    <Ellipse Width="12" Height="12" StrokeThickness="2" Stroke="{StaticResource PhoneSubtleBrush}"/>
+                    <Ellipse Width="8" Height="8" StrokeThickness="2" Stroke="{StaticResource PhoneForegroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="trackBallInfoTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Path=DisplayHeader}" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Path=DisplayContent}" Margin="4,0,0,0"/>
+                </StackPanel>
+            </DataTemplate>
+
+            <Style x:Key="textBlockStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+
+            <Style x:Key="linearAxisStyleNoLine" TargetType="telerikChart:LinearAxis">
+                <Setter Property="LineStroke" Value="Transparent"/>
+                <Setter Property="LabelStyle">
+                    <Setter.Value>
+                        <Style TargetType="TextBlock" >
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Margin" Value="0,2,10,3"/>
+                            <Setter Property="FontSize" Value="14"/>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="MajorTickStyle">
+                    <Setter.Value>
+                        <Style TargetType="Rectangle">
+                            <Setter Property="Fill" Value="Transparent"/>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="gridStyleDashedAll" TargetType="telerikChart:CartesianChartGrid">
+                <Setter Property="MajorXLineDashArray" Value="2,4"/>
+                <Setter Property="MajorYLineDashArray" Value="2,4"/>
+            </Style>
+
+            <Style x:Key="baseAxisStyle" TargetType="telerikChart:Axis">
+                <Setter Property="MajorTickStyle">
+                    <Setter.Value>
+                        <Style TargetType="Rectangle">
+                            <Setter Property="Fill" Value="Transparent"/>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="LineStroke" Value="{StaticResource GrayedBrush}"/>
+                <Setter Property="LabelStyle" Value="{StaticResource textBlockStyle}"/>
+            </Style>
+
+            <Style x:Key="dateTimeCategoricalAxisStyle" TargetType="telerikChart:DateTimeCategoricalAxis" BasedOn="{StaticResource baseAxisStyle}">
+                <Setter Property="MajorTickStyle">
+                    <Setter.Value>
+                        <Style TargetType="Rectangle">
+                            <Setter Property="Fill" Value="{StaticResource GrayedBrush}"/>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="telerikChartSpecialized:TrackBallInfoControl" x:Key="TrackBallInfoStyle">
+                <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="DASHBOARD FOR STOCKS" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="page title" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1">
+            <Grid Margin="12,6,24,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="330"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="STOCK INDEX" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Bold" Foreground="#B3B3B3" Margin="12,0,0,0"/>
+            <telerikChart:RadCartesianChart Margin="12,0,0,0" x:Name="stockChart" Grid.Row="1" Palette="Warm" TrackBallInfoStyle="{StaticResource TrackBallInfoStyle}">
+                <telerikChart:RadCartesianChart.Behaviors>
+                    <telerikChart:ChartPanAndZoomBehavior ZoomMode="None" PanMode="Horizontal" HandleDoubleTap="False"/>
+                    <telerikChart:ChartTrackBallBehavior ShowIntersectionPoints="True" ShowTrackInfo="True" TrackInfoUpdated="TrackInfoUpdated"/>
+                </telerikChart:RadCartesianChart.Behaviors>
+                <telerikChart:RadCartesianChart.HorizontalAxis>
+                    <telerikChart:DateTimeCategoricalAxis 
+                    LabelFormat="MMM-dd"
+                    DateTimeComponent="Date"
+                    LabelFitMode="Rotate"
+                    LabelRotationAngle="325"
+                    PlotMode="OnTicks"
+                    Style="{StaticResource dateTimeCategoricalAxisStyle}"/>
+                </telerikChart:RadCartesianChart.HorizontalAxis>
+                <telerikChart:RadCartesianChart.VerticalAxis>
+                    <telerikChart:LinearAxis RangeExtendDirection="Positive" Style="{StaticResource linearAxisStyleNoLine}"/>
+                </telerikChart:RadCartesianChart.VerticalAxis>
+                <telerikChart:RadCartesianChart.Grid>
+                    <telerikChart:CartesianChartGrid MajorLinesVisibility="Y" Style="{StaticResource gridStyleDashedAll}"/>
+                </telerikChart:RadCartesianChart.Grid>
+            </telerikChart:RadCartesianChart>
+            <Grid Grid.Row="2" x:Name="dataButtonHolder">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ToggleButton Content="daily" IsChecked="True" Click="OnDaily_Click" HorizontalAlignment="Stretch"/>
+                <ToggleButton Grid.Column="1" Content="weekly" Click="OnWeekly_Click" HorizontalAlignment="Stretch"/>
+                <ToggleButton Grid.Column="2" Content="monthly" Click="OnMonthly_Click" HorizontalAlignment="Stretch"/>
+            </Grid>
+            <TextBlock Text="Chart type" Grid.Row="3" Margin="12,0,0,0"/>
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.44*"/>
+                    <ColumnDefinition Width="0.28*"/>
+                    <ColumnDefinition Width="0.28*"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton Content="candle stick" Click="OnCandlestick_Click" IsChecked="True"/>
+                <RadioButton Grid.Column="1" Content="stick" Click="OnStick_Click"/>
+                <RadioButton Grid.Column="2" Content="line" Click="OnLine_Click"/>
+            </Grid>
+        </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

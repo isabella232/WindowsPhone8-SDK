@@ -1,0 +1,94 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="PictureGallery.Pages.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+
+    <telerikPrimitives:RadTransitionControl.Transition>
+        <telerikPrimitives:RadSlideTransition/>
+    </telerikPrimitives:RadTransitionControl.Transition>
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="AboutForeground"
+                         Color="#68625c"/>
+    </UserControl.Resources>
+    
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/background.png"/>
+        </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="PageTitle" Text="about" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"
+                       Foreground="{StaticResource AboutForeground}"/>
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+                <TextBlock 
+                    Text="Picture Gallery" 
+                    Foreground="{StaticResource AboutForeground}"
+                    Margin="12,0,12,0" 
+                    FontSize="{StaticResource PhoneFontSizeLarge}" 
+                    FontFamily="{StaticResource PhoneFontFamilySemiBold}"/>
+                <TextBlock 
+                    Foreground="{StaticResource AboutForeground}"
+                    Text="1.0" 
+                    Margin="12,0,12,0" 
+                    FontSize="{StaticResource PhoneFontSizeNormal}"/>
+            </StackPanel>
+
+            <TextBlock 
+                Grid.Row="1" 
+                Text="{Binding Path=LocalizedStrings.AboutDescription, Source={StaticResource Resources}}"
+                Margin="12,24,12,24" 
+                TextWrapping="Wrap" 
+                Foreground="{StaticResource AboutForeground}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"/>
+            <HyperlinkButton
+                Grid.Row="2" 
+                Content="{Binding Path=LocalizedStrings.AboutSendFeedback, Source={StaticResource Resources}}"
+                Margin="0,12,0,0"
+                HorizontalAlignment="Left" 
+                Foreground="{StaticResource PhoneAccentBrush}" 
+                FontSize="{StaticResource PhoneFontSizeNormal}" 
+                Command="{StaticResource SendMailCommand}"/>
+            <HyperlinkButton 
+                Grid.Row="3"
+                Content="rate this app" 
+                Margin="0,12,0,0" 
+                HorizontalAlignment="Left" 
+                Foreground="{StaticResource PhoneAccentBrush}" 
+                FontSize="{StaticResource PhoneFontSizeNormal}" 
+                Command="{StaticResource RateCommand}"/>
+            <StackPanel Grid.Row="4" Margin="12,0,12,50" VerticalAlignment="Bottom">
+                <Image Source="Images/CompanyLogo.png" 
+                       Stretch="None" 
+                       HorizontalAlignment="Left" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</phone:PhoneApplicationPage>

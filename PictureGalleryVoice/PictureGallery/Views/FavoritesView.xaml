@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="PictureGallery.Views.FavoritesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot">
+        <telerikPrimitives:RadDataBoundListBox x:Name="favoritesListBox"
+                                               Margin="12, 0, 0, 0"
+                                               ItemsSource="{Binding}"
+                                               ItemTap="OnFavoriteTap">
+            <telerikPrimitives:RadDataBoundListBox.EmptyContent>
+                <ContentControl Foreground="#FF67625B"
+                                VerticalAlignment="Top"
+                                FontFamily="Segoe WP Light">
+                    <TextBlock Text="{Binding LocalizedStrings.NoFavorites, Source={StaticResource Resources}, Converter={StaticResource AllCapsConverter}}"
+                               TextWrapping="Wrap"/>
+                </ContentControl>
+                
+            </telerikPrimitives:RadDataBoundListBox.EmptyContent>
+            <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}"
+                                            ContentTemplate="{Binding FavoritesTemplate}">
+                        <telerikPrimitives:RadContextMenu.ContextMenu>
+                            <telerikPrimitives:RadContextMenu ItemTapped="OnFavoritesContextMenuItemTapped">
+                                <telerikPrimitives:RadContextMenuItem Content="unpin"/>
+                            </telerikPrimitives:RadContextMenu>
+                        </telerikPrimitives:RadContextMenu.ContextMenu>
+                    </ContentControl>
+                </DataTemplate>
+            </telerikPrimitives:RadDataBoundListBox.ItemTemplate>
+
+            <telerikPrimitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
+                <telerikPrimitives:WrapVirtualizationStrategyDefinition Orientation="Horizontal"/>
+            </telerikPrimitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
+        </telerikPrimitives:RadDataBoundListBox>
+    </Grid>
+</UserControl>

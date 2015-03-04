@@ -1,0 +1,18 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mscorlib="clr-namespace:System;assembly=mscorlib"
+    xmlns:imaging="clr-namespace:System.Windows.Media.Imaging;assembly=System.Windows">
+
+    <BitmapImage x:Key="BackgroundImage" UriSource="../Images/Dark/Background.png"/>
+    <ImageBrush x:Key="BackgroundBrush" Stretch="None" AlignmentX="Left" ImageSource="{StaticResource BackgroundImage}"/>
+
+    <BitmapImage x:Key="DotsImage" UriSource="../Images/Dark/Dots.png"/>
+    <BitmapImage x:Key="DotsNavigatorImage" UriSource="../Images/Dark/DotsNavigator.png"/>
+    <BitmapImage x:Key="TelerikLogo" UriSource="../Images/Dark/Telerik.png"/>
+
+    <BitmapImage x:Key="NavigationExpander" UriSource="../Images/Dark/NavigationExpander.png"/>
+
+    <SolidColorBrush x:Key="TemplateNavigationControlBackground" Color="#1D1D1D"/>
+
+</ResourceDictionary>

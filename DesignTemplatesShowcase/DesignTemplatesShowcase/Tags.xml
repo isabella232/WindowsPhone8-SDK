@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Tags>
+  <Category CategoryName="ContentViews">
+    <ParentTag Name="NAVIGATION">
+      <Tag Name="lists"/>
+      <Tag Name="tab menu"/>
+      <Tag Name="gallery"/>
+      <Tag Name="page carousel"/>
+      <Tag Name="image carousel"/>
+      <Tag Name="dashboard"/>
+    </ParentTag>
+    <ParentTag Name="TABLES, LISTS">
+      <Tag Name="basic table"/>
+      <Tag Name="headerless table"/>
+      <Tag Name="grouped rows"/>
+      <Tag Name="hierarchy info"/>
+    </ParentTag>
+    <ParentTag Name="SEARCH, SORT, FILTER">
+      <Tag Name="explicit search"/>
+      <Tag Name="dynamic search"/>
+      <Tag Name="auto complete search"/>
+      <Tag Name="save &amp; recent searches"/>
+      <Tag Name="search results"/>
+      <Tag Name="sort"/>
+      <Tag Name="filter"/>
+    </ParentTag>
+    <ParentTag Name="CHART, DASHBOARDS">
+      <Tag Name="filtering"/>
+      <Tag Name="data"/>
+      <Tag Name="stocks"/>
+      <Tag Name="indicators"/>
+    </ParentTag>
+  </Category>
+  <Category CategoryName="Pages">
+    <Tag Name="about"/>
+    <Tag Name="calendar"/>
+    <Tag Name="how to"/>
+    <Tag Name="loading screens"/>
+    <Tag Name="profile"/>
+    <Tag Name="details"/>
+    <Tag Name="forms"/>
+    <Tag Name="messaging"/>
+  </Category>
+  <Category CategoryName="BuildingBlocks">
+    <Tag Name="building blocks"/>
+  </Category>
+</Tags>

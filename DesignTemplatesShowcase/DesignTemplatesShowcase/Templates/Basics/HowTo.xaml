@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="Telerik.DesignTemplates.WP.Templates.Basics.HowTo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:telerikSlideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:viewModels="clr-namespace:Telerik.DesignTemplates.WP.ViewModels"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.DataContext>
+        <viewModels:MainDataViewModel/>
+    </UserControl.DataContext>
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <Grid.Resources>
+            <DataTemplate x:Key="RadPaginationControlItemTemplate">
+                <Border BorderBrush="{StaticResource PhoneForegroundBrush}" Margin="3" BorderThickness="3">
+                    <Rectangle Fill="Transparent" Width="18" Height="18"/>
+                </Border>
+            </DataTemplate>
+            <DataTemplate x:Key="RadPaginationControlCurrentItemTemplate">
+                <Rectangle Fill="{StaticResource PhoneForegroundBrush}" Margin="3" Width="24" Height="24"/>
+            </DataTemplate>
+            <DataTemplate x:Key="RadSlideViewItemTemplate">
+                <Image Source="{Binding ImageSource}" Stretch="UniformToFill"/>
+            </DataTemplate>
+            <DataTemplate x:Key="RadSlideViewOverlayContentTemplate">
+                <telerikPrimitives:RadPaginationControl 
+                        Margin="12,18" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Bottom" 
+                        Height="50" 
+                        PageProvider="{Binding ElementName=slideView}" 
+                        ItemTemplate="{StaticResource RadPaginationControlItemTemplate}"
+                        CurrentItemTemplate="{StaticResource RadPaginationControlCurrentItemTemplate}"
+                        DisplayMode="Thumbnails"/>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="HOW TO" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="how to" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="24,12,24,18">
+            <telerikPrimitives:RadSlideView 
+                x:Name="slideView"
+                ItemsSource="{Binding Items}"
+                IsShowOverlayContentOnTapEnabled="True"
+                ItemTemplate="{StaticResource RadSlideViewItemTemplate}"
+                OverlayContentTemplate="{StaticResource RadSlideViewOverlayContentTemplate}"/>
+        </Grid>
+    </Grid>
+</UserControl>

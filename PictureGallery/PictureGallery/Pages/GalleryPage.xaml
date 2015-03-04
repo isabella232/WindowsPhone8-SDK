@@ -1,0 +1,137 @@
+﻿<pages:PageBase 
+    x:Class="PictureGallery.Pages.GalleryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:PictureGallery.Pages"
+    xmlns:views="clr-namespace:PictureGallery.Views"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:slideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:telerikDataControls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False"
+    ApplicationBar="{StaticResource AppBar}">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/background.png"/>
+        </Grid.Background>
+        <Grid Margin="24, 0, 24, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="galleryName"
+                       Text="{Binding Title}"
+                       Foreground="#FF67615B"
+                       FontSize="22.667"
+                       FontFamily="Segoe WP Semibold"
+                       Margin="0, 40, 12, 0"/>
+        
+            <TextBlock x:Name="galleryAuthorName"
+                       Grid.Row="1"
+                       Foreground="#FF8B8581"
+                       FontSize="20"
+                       FontFamily="Segoe WP Light"
+                       Margin="0, 0, 12, 45">
+                <Run Text="{Binding Path=LocalizedStrings.Curated, Source={StaticResource Resources}}"/>
+                <Run Text="{Binding Path=LocalizedStrings.By, Source={StaticResource Resources}}"/>
+                <Run x:Name="authorNameRun"
+                     Text="{Binding Author.Name}"
+                     Foreground="#FF05B7C3"
+                     FontSize="20" 
+                     FontFamily="Segoe WP"/>
+            </TextBlock>
+
+            <telerikPrimitives:RadPaginationControl Grid.Row="2"
+                                                    HorizontalAlignment="Left"
+                                                    x:Name="pagination"
+                                                    PageProvider="{Binding ElementName=slideView}"
+                                                    DisplayMode="Thumbnails"
+                                                    Margin="0, 0, 0, 12"
+                                                    Height="74">
+                <telerikPrimitives:RadPaginationControl.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding Thumbnail}"
+                                Stretch="UniformToFill"
+                                Width="74"
+                                Height="74"
+                                Margin="0, 0, 12, 0"/>
+                    </DataTemplate>
+                </telerikPrimitives:RadPaginationControl.ItemTemplate>
+                
+                <telerikPrimitives:RadPaginationControl.CurrentItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0, 0, 12, 0"
+                              Width="74"
+                              Height="74">
+                            <Image Source="{Binding Thumbnail}"
+                                   Stretch="UniformToFill"/>
+                            <Border BorderThickness="3"
+                                    BorderBrush="Black"/>
+                        </Grid>
+                    </DataTemplate>
+                </telerikPrimitives:RadPaginationControl.CurrentItemTemplate>
+            </telerikPrimitives:RadPaginationControl>
+
+            <telerikPrimitives:RadSlideView Grid.Row="3"
+                                            ItemsSource="{Binding PhotoList.Photos}"
+                                            SelectedItem="{Binding PhotoList.CurrentPhoto, Mode=TwoWay}"
+                                            x:Name="slideView"
+                                            Height="202"
+                                            VerticalAlignment="Center"
+                                            Tap="OnSlideViewTap">
+                <telerikPrimitives:RadSlideView.ItemTemplate>
+                    <DataTemplate>
+                        <slideView:PanAndZoomImage Source="{Binding Sizes[1]}"
+                                                   ZoomMode="None"
+                                                   Stretch="UniformToFill"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Stretch"
+                                                   IsHitTestVisible="False"/>
+                    </DataTemplate>
+                </telerikPrimitives:RadSlideView.ItemTemplate>
+            </telerikPrimitives:RadSlideView>
+        
+            <TextBlock x:Name="pictureTitle"
+                       Text="{Binding PhotoList.CurrentPhoto.Title}"
+                       Grid.Row="4"
+                       Foreground="#FF22201E" 
+                       FontSize="32" 
+                       FontFamily="Segoe WP SemiLight"/>
+
+            <TextBlock HorizontalAlignment="Left"
+                       Foreground="#FF8B8581"
+                       Grid.Row="5"
+                       FontSize="20"
+                       FontFamily="Segoe WP Light">
+                <Run Text="{Binding Path=LocalizedStrings.By, Source={StaticResource Resources}}"/>
+                <Run x:Name="photoAuthor"
+                     Text="{Binding PhotoList.CurrentPhoto.Author.Name}"
+                     Foreground="#FF05B7C3"
+                     FontSize="20" 
+                     FontFamily="Segoe WP"/>
+            </TextBlock>
+            
+            <views:CommentsView Grid.Row="5"
+                                Photo="{Binding PhotoList.CurrentPhoto}"
+                                x:Name="commentsView"
+                                Foreground="#FF8B8581" 
+                                FontSize="20" 
+                                Margin="-12, 0, -12, 0"
+                                FontFamily="Segoe WP SemiLight"/>
+        </Grid>
+    </Grid>
+</pages:PageBase>

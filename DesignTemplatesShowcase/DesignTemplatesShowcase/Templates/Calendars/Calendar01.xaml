@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Telerik.DesignTemplates.WP.Templates.Calendars.Calendar01"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:viewModels="clr-namespace:Telerik.DesignTemplates.WP.ViewModels"
+    xmlns:helpers="clr-namespace:Telerik.DesignTemplates.WP.Helpers"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <Grid.Resources>
+            <viewModels:SampleAppointmentSource x:Key="CalendarAppointments"/>
+            <helpers:TimeHeaderConverter x:Key="TimeHeaderConverter"/>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <telerikInput:RadCalendar SelectedValueChanged="RadCalendar_SelectedValueChanged"  MonthInfoDisplayMode="Large" AppointmentSource="{StaticResource CalendarAppointments}"/>
+
+        <telerikPrimitives:RadDataBoundListBox x:Name="AppointmentsList" Grid.Row="1" EmptyContent="There are no appointments for the selected day.">
+            <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,8,0,0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel VerticalAlignment="Center" Background="{StaticResource PhoneForegroundBrush}">
+                            <TextBlock Margin="18,4,18,0" Foreground="{StaticResource PhoneBackgroundBrush}" FontWeight="SemiBold" Text="{Binding StartDate, Converter={StaticResource TimeHeaderConverter}}" VerticalAlignment="Center"/>
+                            <TextBlock Margin="18,0,18,4" Foreground="{StaticResource PhoneBackgroundBrush}" FontWeight="SemiBold" Text="{Binding EndDate, Converter={StaticResource TimeHeaderConverter}}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding Subject}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" FontFamily="{StaticResource PhoneFontFamilySemiLight}" VerticalAlignment="Center" Margin="10,0,0,0" />
+                            <TextBlock Text="{Binding AdditionalInfo}" FontSize="{StaticResource PhoneFontSizeNormal}" VerticalAlignment="Center" Margin="10,0,0,0" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </telerikPrimitives:RadDataBoundListBox.ItemTemplate>
+        </telerikPrimitives:RadDataBoundListBox>
+    </Grid>
+</UserControl>

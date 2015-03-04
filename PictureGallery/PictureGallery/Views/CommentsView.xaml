@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="PictureGallery.Views.CommentsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:PictureGallery.Pages"
+    xmlns:primitives="clr-namespace:Telerik.Windows.Controls.Primitives;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:telerikDataControls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    mc:Ignorable="d"
+    x:Name="commentsView"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.Resources>
+        <pages:DateToPassedTimeConverter x:Key="DateConverter"/>
+        
+        <DataTemplate x:Key="CommentTemplate1">
+            <Grid Margin="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid VerticalAlignment="Top"
+                      Margin="0, 0, 25, 0"
+                      x:Name="authorInfo">
+                    <Image Source="{Binding UserPicture}"
+                           Stretch="None"/>
+                    <Image Source="../Pages/Images/buddyMask.png"
+                           Stretch="None"/>
+                </Grid>
+
+                <primitives:RadPointerContentControl Background="#BACECC"
+                                                     TargetElement="{Binding ElementName=authorInfo}"
+                                                     Grid.Column="1"
+                                                     Foreground="White">
+                    <primitives:RadPointerContentControl.PointerTemplate>
+                        <DataTemplate>
+                            <Polygon Width="12"
+                                     Height="24"
+                                     Points="0,0 12,0 12,12 0,24"
+                                     StrokeThickness="0"
+                                     Fill="#BACECC"
+                                     RenderTransformOrigin="0.5, 0.5"/>
+                        </DataTemplate>
+                    </primitives:RadPointerContentControl.PointerTemplate>
+
+                    <StackPanel>
+                        <TextBlock Text="{Binding Text}"
+                                   TextWrapping="Wrap"
+                                   Margin="12"/>
+                        <TextBlock Margin="12, 0, 12, 12"
+                                   HorizontalAlignment="Left"
+                                   TextWrapping="Wrap">
+                            <Run Text="{Binding Path=LocalizedStrings.By, Source={StaticResource Resources}}"
+                                 Foreground="#99FFFFFF"/>
+                            <Run Text="{Binding UserName}"
+                                 Foreground="#FF05B7C3"/>
+                            <Run Text="{Binding Date, Converter={StaticResource DateConverter}}"
+                                 Foreground="#99FFFFFF"/>
+                        </TextBlock>
+                    </StackPanel>
+                </primitives:RadPointerContentControl>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CommentTemplate2">
+            <Grid Margin="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1"
+                      VerticalAlignment="Top"
+                      x:Name="authorInfo"
+                      Margin="25, 0, 0, 0">
+                    <Image Source="{Binding UserPicture}"
+                           Stretch="None"/>
+                    <Image Source="../Pages/Images/buddyMask.png"/>
+                </Grid>
+                
+
+                <primitives:RadPointerContentControl Background="#BAB0A4"
+                                                     TargetElement="{Binding ElementName=authorInfo}"
+                                                     Foreground="White">
+                    <primitives:RadPointerContentControl.PointerTemplate>
+                        <DataTemplate>
+                            <Polygon Width="12"
+                                     Height="24"
+                                     Points="0,0 12,0 12,12 0,24"
+                                     StrokeThickness="0"
+                                     Fill="#BAB0A4"
+                                     RenderTransformOrigin="0.5, 0.5">
+                                <Polygon.RenderTransform>
+                                    <ScaleTransform ScaleX="-1"/>
+                                </Polygon.RenderTransform>
+                            </Polygon>
+                        </DataTemplate>
+                    </primitives:RadPointerContentControl.PointerTemplate>
+
+                    <StackPanel>
+                        <TextBlock Text="{Binding Text}"
+                                   TextWrapping="Wrap"
+                                   Margin="12"/>
+                        <TextBlock Margin="12, 0, 12, 12"
+                                   HorizontalAlignment="Left"
+                                   TextWrapping="Wrap">
+                            <Run Text="{Binding Path=LocalizedStrings.By, Source={StaticResource Resources}}"
+                                 Foreground="#99FFFFFF"/>
+                            <Run Text="{Binding UserName}"
+                                 Foreground="#FF05B7C3"/>
+                            <Run Text="{Binding Date, Converter={StaticResource DateConverter}}"
+                                 Foreground="#99FFFFFF"/>
+                        </TextBlock>
+                    </StackPanel>
+                </primitives:RadPointerContentControl>
+            </Grid>
+        </DataTemplate>
+
+        <pages:CommentTemplateSelector x:Key="CommentSelector"
+                                       Template1="{StaticResource CommentTemplate1}"
+                                       Template2="{StaticResource CommentTemplate2}"/>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          DataContext="{Binding Photo, ElementName=commentsView}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="commentsCount"
+                   HorizontalAlignment="Right"
+                   Foreground="#FF8B8581" 
+                   FontSize="20"
+                   Margin="0, 0, 12, 0"
+                   FontFamily="Segoe WP SemiLight">
+            <Run Text="{Binding Comments.Count}"/>
+            <Run Text="{Binding Comments.Count, Converter={StaticResource CommentCountConverter}}"/>
+        </TextBlock>
+        
+        <telerikDataControls:RadConversationView x:Name="conversationView"
+                                                 ItemsSource="{Binding Comments}"
+                                                 Grid.Row="1"
+                                                 TextBoxVisibility="Collapsed"
+                                                 Foreground="#FF8B8581"
+                                                 MessageTemplateSelector="{StaticResource CommentSelector}"
+                                                 Tap="OnCommentsTap"/>
+
+        <telerikPrimitives:RadBusyIndicator IsRunning="{Binding Comments, Converter={StaticResource NullToBoolConverter}}"
+                                            Grid.RowSpan="2"
+                                            x:Name="busyIndicator"
+                                            Content=""
+                                            AnimationStyle="AnimationStyle7"/>
+    </Grid>
+</UserControl>

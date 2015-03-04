@@ -1,0 +1,73 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Telerik.DesignTemplates.WP.Pages.ContentViews"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+
+    <telerikPrimitives:RadTransitionControl.Transition>
+        <telerikPrimitives:RadContinuumTransition/>
+    </telerikPrimitives:RadTransitionControl.Transition>
+    
+    <Grid x:Name="LayoutRoot">
+            <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Margin="24,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="4" Fill="{StaticResource GreenBrush}"/>
+        <TextBlock Margin="24,8,24,0" Grid.Row="1" Width="180" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.1" LineStackingStrategy="BlockLineHeight" LineHeight="23"  Text="DESIGN TEMPLATES" FontSize="26" FontFamily="Segoe WP Black" TextAlignment="Left" TextWrapping="Wrap"  />
+        <TextBlock Margin="24,-8,24,12" Grid.Row="2" Text="content views" FontFamily="{StaticResource PhoneFontFamilyLight}" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
+        <telerikData:RadJumpList Margin="18,0" Grid.Row="3"  IsGroupPickerEnabled="True"
+                                 GroupDescriptorsSource="{Binding GroupDescriptors}" 
+                                 ItemsSource="{Binding ContentViewsTagInformation}" ItemTap="RadJumpList_ItemTap">
+            <telerikData:RadJumpList.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="6" Height="164" Width="98" Background="{StaticResource GrayBrush}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="{StaticResource CyanBrush}" Height="4" Width="98"/>
+                        <TextBlock Grid.Row="1" Foreground="{StaticResource CyanBrush}" Text="{Binding TemplatesCount}" FontSize="46" FontFamily="Segoe WP Light" LineStackingStrategy="BlockLineHeight" LineHeight="46" TextAlignment="Left" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="11,25,0,0" VerticalAlignment="Top"/>
+                        <TextBlock Grid.Row="2" Text="{Binding Tag}" Foreground="White" FontSize="18" FontFamily="Segoe WP Light" LineStackingStrategy="BlockLineHeight" LineHeight="20" TextAlignment="Left" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="10,0,6,12" VerticalAlignment="Bottom"/>
+                    </Grid>
+                </DataTemplate>
+            </telerikData:RadJumpList.ItemTemplate>
+            <telerikData:RadJumpList.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Grid Margin="6,32,6,12" Width="428" Background="{StaticResource CyanBrush}">
+                        <TextBlock Margin="15,7" FontSize="{StaticResource PhoneFontSizeMedium}" Foreground="Black" FontFamily="Segoe WP SemiLight" LineStackingStrategy="BlockLineHeight" LineHeight="23" TextAlignment="Left"  Text="{Binding}" TextWrapping="Wrap"/>
+                    </Grid>
+                </DataTemplate>
+            </telerikData:RadJumpList.GroupHeaderTemplate>
+            <telerikData:RadJumpList.VirtualizationStrategyDefinition>
+                <telerikPrimitives:WrapVirtualizationStrategyDefinition Orientation="Horizontal"/>
+            </telerikData:RadJumpList.VirtualizationStrategyDefinition>
+        </telerikData:RadJumpList>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/Icons/SearchButton.png" Click="ApplicationBarIconButton_Click" Text="search"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/Icons/DownloadButton.png" Click="ApplicationBarIconButton2_Click" Text="download"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="about" Click="ApplicationBarMenuItem_Click"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Templates>
+  
+  <TemplateCategory CategoryName="ContentViews">
+    
+    <Template Title="Thumbnail list with checkboxes support" 
+              ShortTitle="Thumbnail list 01"
+              IsNew="false" 
+              Tags="lists;search results;headerless table" 
+              ScreenshotName="list-1.png" 
+              TemplateLocation="Templates.Lists.List01" />
+    
+    <Template Title="Thumbnail list with checkboxes support" 
+              ShortTitle="Thumbnail List 02"
+              IsNew="false" 
+              Tags="lists;search results;headerless table" 
+              ScreenshotName="list-2.png" 
+              TemplateLocation="Templates.Lists.List02" />
+    
+    <Template Title="Thumbnail list with checkboxes support and groups" 
+              ShortTitle="Thumbnail List 03"
+              IsNew="false" 
+              Tags="lists;search results;grouped rows" 
+              ScreenshotName="list-3.png" 
+              TemplateLocation="Templates.Lists.List03" />
+    
+    <Template Title="Thumbnail list with checkboxes support and styled page header" 
+              ShortTitle="Thumbnail List 04"
+              IsNew="false" 
+              Tags="lists" 
+              ScreenshotName="list-4.png" 
+              TemplateLocation="Templates.Lists.List04" />
+    
+    <Template Title="Thumbnail list with checkboxes support and styled page header" 
+              ShortTitle="Thumbnail List 05"
+              IsNew="false" 
+              Tags="lists" 
+              ScreenshotName="list-5.png" 
+              TemplateLocation="Templates.Lists.List05" />
+
+    <Template Title="Thumbnail list with list view and wrap view support"
+              ShortTitle="Thumbnail List 06"
+              IsNew="true"
+              Tags="lists;gallery"
+              ScreenshotName="list-6.png"
+              TemplateLocation="Templates.Lists.List06" />
+
+    <Template Title="Image list with list view and wrap view support"
+              ShortTitle="Image List"
+              IsNew="true"
+              Tags="lists;gallery"
+              ScreenshotName="list-7.png"
+              TemplateLocation="Templates.Lists.List07" />
+
+    <Template Title="Thumbnail list with checkboxes support"
+              ShortTitle="Thumbnail List 07"
+              IsNew="true"
+              Tags="lists;headerless table"
+              ScreenshotName="list-8.png"
+              TemplateLocation="Templates.Lists.List08" />
+
+    <Template Title="Thumbnail list with checkboxes support"
+              ShortTitle="Thumbnail List 08"
+              IsNew="true"
+              Tags="lists;headerless table"
+              ScreenshotName="list-9.png"
+              TemplateLocation="Templates.Lists.List09" />
+
+    <Template Title="Image carousel with thumbnails for pagination"
+              ShortTitle="Image Carousel 01"
+              IsNew="false"
+              Tags="image carousel"
+              ScreenshotName="slide-view-1.png"
+              TemplateLocation="Templates.SlideViews.SlideView01" />
+
+    <Template Title="Slides with title and detailed information per image and prev/next buttons"
+              ShortTitle="Slides with Detailed Information"
+              IsNew="false"
+              Tags="page carousel"
+              ScreenshotName="slide-view-2.png"
+              TemplateLocation="Templates.SlideViews.SlideView02" />
+
+    <Template Title="Image carousel with pan and zoom and overlay content for detailed information"
+              ShortTitle="Image Carousel with Pan and Zoom"
+              IsNew="false"
+              Tags="image carousel"
+              ScreenshotName="slide-view-5.png"
+              TemplateLocation="Templates.SlideViews.SlideView05" />
+    
+    <Template Title="Image gallery with zooming and panning"
+              ShortTitle="Image Gallery 01"
+              IsNew="false"
+              Tags="lists;gallery"
+              ScreenshotName="gallery-1.png"
+              TemplateLocation="Templates.Galleries.Gallery01" />
+
+    <Template Title="Image gallery with zooming and panning and grouped images"
+              ShortTitle="Image Gallery 02"
+              IsNew="false"
+              Tags="lists;gallery"
+              ScreenshotName="gallery-2.png"
+              TemplateLocation="Templates.Galleries.Gallery02" />
+
+    <Template Title="Items in grid layout consisting of image and description"
+              ShortTitle="Grid Layout Items 01"
+              IsNew="false"
+              Tags="lists;gallery;search results"
+              ScreenshotName="gallery-3.png"
+              TemplateLocation="Templates.Galleries.Gallery03" />
+
+    <Template Title="Items in grid layout consisting of image and description"
+              ShortTitle="Grid Layout Items 02"
+              IsNew="false"
+              Tags="lists;gallery;search results"
+              ScreenshotName="gallery-4.png"
+              TemplateLocation="Templates.Galleries.Gallery04" />
+
+    <Template Title="Dashboard for stock data"
+              ShortTitle="Dashboard for Stocks"
+              IsNew="false"
+              Tags="data;filtering"
+              ScreenshotName="chart-1.png"
+              TemplateLocation="Templates.Charts.Stocks" />
+
+    <Template Title="Dashboard for stock data and financial indicators"
+              ShortTitle="Dashboard for Financial Indicators"
+              IsNew="false"
+              Tags="data"
+              ScreenshotName="chart-2.png"
+              TemplateLocation="Templates.Charts.Indicators" />
+
+    <Template Title="Search with AutoComplete support"
+              ShortTitle="Search with AutoComplete"
+              IsNew="false"
+              Tags="explicit search;auto complete search"
+              ScreenshotName="search-1.png"
+              TemplateLocation="Templates.Basics.Search01" />
+
+    <Template Title="Search outlook style with AutoComplete support"
+              ShortTitle="Search in Outlook style"
+              IsNew="false"
+              Tags="explicit search;auto complete search"
+              ScreenshotName="search-2.png"
+              TemplateLocation="Templates.Basics.Search02" />
+
+    <Template Title="Expanding list with image and details on demand"
+              ShortTitle="Expanding List 01"
+              IsNew="true"
+              Tags="lists;grouped rows"
+              ScreenshotName="expanders-1.png"
+              TemplateLocation="Templates.Expanders.Expanders01" />
+
+    <Template Title="List with expandable thumbnail list"
+              ShortTitle="Expanding List 02"
+              IsNew="true"
+              Tags="lists;grouped rows;hierarchy info"
+              ScreenshotName="expanders-2.png"
+              TemplateLocation="Templates.Expanders.Expanders02" />
+
+    <Template Title="Expanding thumbnail list with details on demand"
+              ShortTitle="Expanding List 03"
+              IsNew="true"
+              Tags="lists;grouped rows"
+              ScreenshotName="expanders-3.png"
+              TemplateLocation="Templates.Expanders.Expanders03" />
+
+    <Template Title="List with expandable gallery and details"
+              ShortTitle="Expanding List 04"
+              IsNew="true"
+              Tags="lists;grouped rows;hierarchy info"
+              ScreenshotName="expanders-4.png"
+              TemplateLocation="Templates.Expanders.Expanders04" />
+
+    <Template Title="List with expandable thumbnail list"
+              ShortTitle="Expanding List 05"
+              IsNew="true"
+              Tags="lists;grouped rows;hierarchy info"
+              ScreenshotName="expanders-5.png"
+              TemplateLocation="Templates.Expanders.Expanders05" />
+
+    <Template Title="Lists of custom hub tiles for navigation dashboard"
+              ShortTitle="Hub Tile 01"
+              IsNew="true"
+              Tags="lists;dashboard;gallery"
+              ScreenshotName="hub-tile-1.png"
+              TemplateLocation="Templates.HubTiles.HubTile01" />
+
+    <Template Title="Dashboard navigation consisting of various hub tiles"
+              ShortTitle="Hub Tile 02"
+              IsNew="true"
+              Tags="lists;dashboard;gallery"
+              ScreenshotName="hub-tile-2.png"
+              TemplateLocation="Templates.HubTiles.HubTile02" />
+
+    <Template Title="Dashboard navigation of slide tiles"
+              ShortTitle="Hub Tile 03"
+              IsNew="true"
+              Tags="lists;dashboard;gallery"
+              ScreenshotName="hub-tile-3.png"
+              TemplateLocation="Templates.HubTiles.HubTile03" />
+
+    <Template Title="Dashboard navigation of rotator tiles"
+              ShortTitle="Hub Tile 04"
+              IsNew="true"
+              Tags="lists;dashboard;gallery"
+              ScreenshotName="hub-tile-4.png"
+              TemplateLocation="Templates.HubTiles.HubTile04" />
+    
+  </TemplateCategory>
+
+  <TemplateCategory CategoryName="BuildingBlocks">
+
+    <Template Title="Diagnostics"
+              ShortTitle="Diagnostics"
+              IsNew="false"
+              Tags="building blocks"
+              ScreenshotName="diagnostics.png"
+              TemplateLocation="Templates.BuildingBlocks.Diagnostics" />
+
+    <Template Title="Rate Application Reminder"
+              ShortTitle="Rate Application Reminder"
+              IsNew="false"
+              Tags="building blocks"
+              ScreenshotName="rate-reminder.png"
+              TemplateLocation="Templates.BuildingBlocks.RateReminder" />
+
+    <Template Title="Trial Reminder"
+              ShortTitle="Trial Reminder"
+              IsNew="false"
+              Tags="building blocks"
+              ScreenshotName="trial-reminder.png"
+              TemplateLocation="Templates.BuildingBlocks.TrialReminder" />
+
+  </TemplateCategory>
+  
+  <TemplateCategory CategoryName="Pages">
+
+    <Template Title="Page with gallery with support for detailed picture view and information"
+              ShortTitle="Page with Gallery 01"
+              IsNew="false"
+              Tags="details"
+              ScreenshotName="slide-view-3.png"
+              TemplateLocation="Templates.SlideViews.SlideView03" />
+
+    <Template Title="Page with image gallery and detailed information"
+              ShortTitle="Page with Gallery 02"
+              IsNew="false"
+              Tags="details"
+              ScreenshotName="slide-view-4.png"
+              TemplateLocation="Templates.SlideViews.SlideView04" />
+
+    <Template Title="Page with detailed information, image and description"
+              ShortTitle="Profile Page 01"
+              IsNew="false"
+              Tags="profile"
+              ScreenshotName="profile.png"
+              TemplateLocation="Templates.Basics.Profile" />
+
+    <Template Title="Page with detailed information and image gallery"
+              ShortTitle="Profile Page 02"
+              IsNew="false"
+              Tags="profile"
+              ScreenshotName="details-1.png"
+              TemplateLocation="Templates.Details.Details01" />
+
+    <Template Title="Page with detailed information and image gallery"
+              ShortTitle="Profile Page 03"
+              IsNew="false"
+              Tags="profile"
+              ScreenshotName="details-2.png"
+              TemplateLocation="Templates.Details.Details02" />
+
+    <Template Title="About"
+              ShortTitle="About"
+              IsNew="false"
+              Tags="about"
+              ScreenshotName="about.png"
+              TemplateLocation="Templates.Basics.About" />
+
+    <Template Title="How To"
+              ShortTitle="How To"
+              IsNew="false"
+              Tags="how to"
+              ScreenshotName="howto.png"
+              TemplateLocation="Templates.Basics.HowTo" />
+
+    <Template Title="Calendar and appointments"
+              ShortTitle="Calendar"
+              IsNew="false"
+              Tags="calendar"
+              ScreenshotName="calendar.png"
+              TemplateLocation="Templates.Calendars.Calendar01" />
+
+    <Template Title="Sign in form"
+              ShortTitle="Sign In Form"
+              IsNew="true"
+              Tags="forms"
+              ScreenshotName="data-form-1.png"
+              TemplateLocation="Templates.DataForms.SignIn" />
+
+    <Template Title="Simple registration form with validation support"
+              ShortTitle="Sign Up Form 01"
+              IsNew="true"
+              Tags="forms"
+              ScreenshotName="data-form-2.png"
+              TemplateLocation="Templates.DataForms.SignUp01" />
+
+    <Template Title="Extended registration form with validation support"
+              ShortTitle="Sign Up Form 02"
+              IsNew="true"
+              Tags="forms"
+              ScreenshotName="data-form-3.png"
+              TemplateLocation="Templates.DataForms.SignUp02" />
+
+    <Template Title="Registration form with validation support"
+              ShortTitle="Sign Up Form 03"
+              IsNew="true"
+              Tags="forms"
+              ScreenshotName="data-form-4.png"
+              TemplateLocation="Templates.DataForms.SignUp03" />
+
+    <Template Title="Check out form with validation support"
+              ShortTitle="Checkout Form"
+              IsNew="true"
+              Tags="forms"
+              ScreenshotName="data-form-5.png"
+              TemplateLocation="Templates.DataForms.CheckoutForm" />
+
+    <Template Title="Form with various fields for search/filter purposes"
+              ShortTitle="Multipurpose Form"
+              IsNew="true"
+              Tags="forms"
+              ScreenshotName="data-form-6.png"
+              TemplateLocation="Templates.DataForms.MultipurposeForm" />
+
+    <Template Title="Instant messaging page"
+              ShortTitle="Messaging Page 01"
+              IsNew="true"
+              Tags="messaging"
+              ScreenshotName="conversation-1.png"
+              TemplateLocation="Templates.Conversations.ConversationView01" />
+
+    <Template Title="Instant messaging page"
+              ShortTitle="Messaging Page 02"
+              IsNew="true"
+              Tags="messaging"
+              ScreenshotName="conversation-2.png"
+              TemplateLocation="Templates.Conversations.ConversationView02" />
+
+    <Template Title="Page with detailed information and comments"
+              ShortTitle="Page with Comments 01"
+              IsNew="true"
+              Tags="messaging"
+              ScreenshotName="conversation-3.png"
+              TemplateLocation="Templates.Conversations.ConversationView03" />
+
+    <Template Title="Page with detailed information and comments"
+              ShortTitle="Page with Comments 02"
+              IsNew="true"
+              Tags="messaging"
+              ScreenshotName="conversation-4.png"
+              TemplateLocation="Templates.Conversations.ConversationView04" />
+
+    <Template Title="Details page with tab views"
+              ShortTitle="Details Page with Tab Views"
+              IsNew="true"
+              Tags="details"
+              ScreenshotName="details-3.png"
+              TemplateLocation="Templates.Details.Details03" />
+
+    <Template Title="Page with image carousel and detailed information in list view"
+              ShortTitle="Page with Image Carousel"
+              IsNew="true"
+              Tags="details"
+              ScreenshotName="list-10.png"
+              TemplateLocation="Templates.Lists.List10" />
+    
+  </TemplateCategory>
+  
+</Templates>

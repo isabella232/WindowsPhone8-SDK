@@ -1,0 +1,262 @@
+﻿<UserControl x:Class="Telerik.DesignTemplates.WP.Templates.Conversations.ConversationView03"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+    xmlns:telerikPrimitivesNamespace="clr-namespace:Telerik.Windows.Controls.Primitives;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:viewModels="clr-namespace:Telerik.DesignTemplates.WP.ViewModels"
+    xmlns:helpers="clr-namespace:Telerik.DesignTemplates.WP.Helpers"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.DataContext>
+        <viewModels:MessagesViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <helpers:IdToPictureConverter x:Key="IdToPictureConverter"/>
+        <helpers:MessageGroupTemplateSelector x:Key="MessageGroupTemplateSelector">
+            <helpers:MessageGroupTemplateSelector.OutgoingTemplate>
+                <DataTemplate>
+                    <Grid Margin="12,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <telerikPrimitivesNamespace:RadPointerContentControl 
+                            PointerDirection="Right" 
+                            VerticalOffset="-3"
+                            Background="{Binding Key.MessageBackground}" >
+                            <telerikPrimitivesNamespace:RadPointerContentControl.PointerTemplate>
+                                <DataTemplate>
+                                    <Polygon Width="14"
+                                             Height="28"
+                                             Points="0,14 14,14 14,28"
+                                             Fill="{Binding Key.MessageBackground}"
+                                             StrokeThickness="0"
+                                             RenderTransformOrigin="0.5, 0.5" />
+                                </DataTemplate>
+                            </telerikPrimitivesNamespace:RadPointerContentControl.PointerTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock 
+                                    Text="{Binding Path=Key.Text}"
+                                    TextWrapping="Wrap"
+                                    Foreground="White"
+                                    Margin="8, 2, 8, 2"/>
+                                <TextBlock 
+                                    Grid.Row="1" 
+                                    Text="{Binding Path=Key.FormattedTimeStamp}"
+                                    Margin="8, 2, 8, 2"
+                                    HorizontalAlignment="Left"
+                                    Foreground="{StaticResource PhoneSubtleBrush}"/>
+                            </Grid>
+                        </telerikPrimitivesNamespace:RadPointerContentControl>
+                        <Image 
+                            Grid.Column="1" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Top"
+                            Source="{Binding Key.SenderId, Converter={StaticResource IdToPictureConverter}}"
+                            Width="62"
+                            Height="62"/>
+                    </Grid>
+                </DataTemplate>
+            </helpers:MessageGroupTemplateSelector.OutgoingTemplate>
+            <helpers:MessageGroupTemplateSelector.IncomingTemplate>
+                <DataTemplate>
+                    <Grid Margin="12,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Source="{Binding Key.SenderId, Converter={StaticResource IdToPictureConverter}}"
+                            Width="62"
+                            Height="62"/>
+                        <telerikPrimitivesNamespace:RadPointerContentControl 
+                            Grid.Column="1"
+                            Background="{Binding Key.MessageBackground}"
+                            PointerDirection="Left"
+                            VerticalOffset="-3">
+                            <telerikPrimitivesNamespace:RadPointerContentControl.PointerTemplate>
+                                <DataTemplate>
+                                    <Polygon Width="14"
+                                             Height="28"
+                                             Points="0,14 14,14 0,28"
+                                             Fill="{Binding Key.MessageBackground}"
+                                             StrokeThickness="0"
+                                             RenderTransformOrigin="0.5, 0.5" >
+                                        <Polygon.RenderTransform>
+                                            <TranslateTransform X="-2" Y="-2"/>
+                                        </Polygon.RenderTransform>
+                                    </Polygon>
+                                </DataTemplate>
+                            </telerikPrimitivesNamespace:RadPointerContentControl.PointerTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock 
+                                    Text="{Binding Path=Key.Text}"
+                                    TextWrapping="Wrap"
+                                    Foreground="White"
+                                    Margin="8, 2, 8, 2"/>
+                                <TextBlock
+                                    Grid.Row="1" 
+                                    Text="{Binding Path=Key.FormattedTimeStamp}"
+                                    Margin="8, 2, 8, 2"
+                                    HorizontalAlignment="Right"
+                                    Foreground="{StaticResource PhoneSubtleBrush}"/>
+                            </Grid>
+                        </telerikPrimitivesNamespace:RadPointerContentControl>
+                    </Grid>
+                </DataTemplate>
+            </helpers:MessageGroupTemplateSelector.IncomingTemplate>
+        </helpers:MessageGroupTemplateSelector>
+        <helpers:MessageItemTemplateSelector x:Key="MessageItemTemplateSelector">
+            <helpers:MessageItemTemplateSelector.EmptyDataItemTemplate>
+                <DataTemplate/>
+            </helpers:MessageItemTemplateSelector.EmptyDataItemTemplate>
+            <helpers:MessageItemTemplateSelector.IncomingTemplate>
+                <DataTemplate>
+                    <Grid Margin="12,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <telerikPrimitivesNamespace:RadPointerContentControl 
+                            Grid.Column="1" 
+                            PointerDirection="Left" 
+                            VerticalOffset="-3"
+                            Background="{Binding MessageBackground}">
+                            <telerikPrimitivesNamespace:RadPointerContentControl.PointerTemplate>
+                                <DataTemplate>
+                                    <Polygon Width="14"
+                                             Height="28"
+                                             Points="0,14 14,14 0,28"
+                                             Fill="{Binding MessageBackground}"
+                                             StrokeThickness="0"
+                                             RenderTransformOrigin="0.5, 0.5" >
+                                        <Polygon.RenderTransform>
+                                            <TranslateTransform X="-2"  Y="-2"/>
+                                        </Polygon.RenderTransform>
+                                    </Polygon>
+                                </DataTemplate>
+                            </telerikPrimitivesNamespace:RadPointerContentControl.PointerTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock 
+                                    Text="{Binding Path=Text}"
+                                    TextWrapping="Wrap" 
+                                    Foreground="White"
+                                    Margin="8, 2, 8, 2"/>
+                                <TextBlock 
+                                    Grid.Row="1" 
+                                    Text="{Binding Path=FormattedTimeStamp}"
+                                    Margin="8, 2, 8, 2"
+                                    HorizontalAlignment="Right"
+                                    Foreground="{StaticResource PhoneSubtleBrush}"/>
+                            </Grid>
+                        </telerikPrimitivesNamespace:RadPointerContentControl>
+                    </Grid>
+                </DataTemplate>
+            </helpers:MessageItemTemplateSelector.IncomingTemplate>
+            <helpers:MessageItemTemplateSelector.OutgoingTemplate>
+                <DataTemplate>
+                    <Grid Margin="12,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <telerikPrimitivesNamespace:RadPointerContentControl 
+                            Background="{Binding MessageBackground}"
+                            PointerDirection="Right"
+                            VerticalOffset="-3">
+                            <telerikPrimitivesNamespace:RadPointerContentControl.PointerTemplate>
+                                <DataTemplate>
+                                    <Polygon Width="14"
+                                             Height="28"
+                                             Points="0,14 14,14 14,28"
+                                             Fill="{Binding MessageBackground}"
+                                             StrokeThickness="0"
+                                             RenderTransformOrigin="0.5, 0.5" />
+                                </DataTemplate>
+                            </telerikPrimitivesNamespace:RadPointerContentControl.PointerTemplate>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock 
+                                    Text="{Binding Path=Text}"
+                                    TextWrapping="Wrap"
+                                    Foreground="White"
+                                    Margin="8, 2, 8, 2"/>
+                                <TextBlock 
+                                    Grid.Row="1"
+                                    Text="{Binding Path=FormattedTimeStamp}"
+                                    Margin="8, 2, 8, 2"
+                                    HorizontalAlignment="Left"
+                                    Foreground="{StaticResource PhoneSubtleBrush}"/>
+                            </Grid>
+                        </telerikPrimitivesNamespace:RadPointerContentControl>
+                    </Grid>
+                </DataTemplate>
+            </helpers:MessageItemTemplateSelector.OutgoingTemplate>
+        </helpers:MessageItemTemplateSelector>
+        <DataTemplate x:Key="TextBoxTemplate"/>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="PAGE WITH DETAILED INFORMATION AND COMMENTS" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="page title" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="0,6,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="284"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image Source="{StaticResource FrameSource}" Stretch="UniformToFill" VerticalAlignment="Center"/>
+                <TextBlock 
+                    Grid.Row="1" 
+                    Margin="24,6,0,0" 
+                    TextWrapping="Wrap" 
+                    FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
+                    FontFamily="Segoe WP Light" 
+                    Text="{Binding Messages.Count, StringFormat=\{0\} comments}"/>
+                <telerikData:RadConversationView 
+                    Grid.Row="2" 
+                    ItemsSource="{Binding Messages}"
+                    x:Name="conversationView" MessageTemplateSelector="{StaticResource MessageItemTemplateSelector}"
+                    Margin="12, 0" GroupHeaderTemplateSelector="{StaticResource MessageGroupTemplateSelector}"
+                    SendingMessage="OnSendingMessage" TextBoxTemplate="{StaticResource TextBoxTemplate}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

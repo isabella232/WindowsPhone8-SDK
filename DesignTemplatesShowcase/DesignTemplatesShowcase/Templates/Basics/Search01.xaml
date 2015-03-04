@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Telerik.DesignTemplates.WP.Templates.Basics.Search01"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:viewModels="clr-namespace:Telerik.DesignTemplates.WP.ViewModels"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.DataContext>
+        <viewModels:MainDataViewModel/>
+    </UserControl.DataContext>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <Grid.Resources>
+            <DataTemplate x:Key="DataBoundListBoxItemTemplate">
+                <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Width="99" Height="99" Source="{Binding ImageThumbnailSource}"/>
+                    <StackPanel Margin="12,-14,0,0" Grid.Column="1">
+                        <TextBlock FontSize="{StaticResource PhoneFontSizeExtraLarge}" FontFamily="{StaticResource PhoneFontFamilySemiLight}" Text="{Binding Title}" TextWrapping="Wrap"/>
+                        <TextBlock FontSize="{StaticResource PhoneFontSizeNormal}" Text="{Binding Information}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="ApplicationTitle" Margin="24,17,0,0" Text="SEARCH WITH AUTOCOMPLETE" Style="{StaticResource PhoneTextNormalStyle}"/>
+
+        <Grid Grid.Row="1" Margin="24,28,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <telerikInput:RadAutoCompleteBox ClearButtonVisibility="Visible" ActionButtonVisibility="Visible" EmptyFilterBehavior="ShowAll" Margin="-12,6,12,0" x:Name="radAutoComplete" AutoCompleteMode="Contains" SuggestionsSource="{Binding Items}" FilterKeyPath="Title" AutoCompletePopupDisplayMode="None" GotFocus="RadAutoComplete_GotFocus" LostFocus="RadAutoComplete_LostFocus" />
+            <telerikPrimitives:RadDataBoundListBox Margin="0,14,0,0" Grid.Row="1" ItemsSource="{Binding ElementName=radAutoComplete, Path=FilteredSuggestions}" ItemTemplate="{StaticResource DataBoundListBoxItemTemplate}"/>
+
+        </Grid>
+    </Grid>
+</UserControl>

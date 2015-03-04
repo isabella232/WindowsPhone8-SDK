@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Telerik.DesignTemplates.WP.Controls.HomePageCategory"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" x:Name="HomePageCategoryControl"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="184" d:DesignWidth="184">
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource GrayBrush}"  Height="184" Width="184">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Rectangle Margin="12,0" HorizontalAlignment="Left" Width="100" Height="4" Fill="{StaticResource CyanBrush}"/>
+        <TextBlock Grid.Row="1" Margin="12,0" Text="{Binding Path=Count, ElementName=HomePageCategoryControl}" Foreground="{StaticResource CyanBrush}" FontSize="62" FontFamily="Segoe WP Light"/>
+        <TextBlock Grid.Row="2" VerticalAlignment="Bottom" LineStackingStrategy="BlockLineHeight" LineHeight="30" Margin="12,0,12,12" Text="{Binding Path=Title, ElementName=HomePageCategoryControl}" TextWrapping="Wrap" Foreground="#FFFFFFFF" FontSize="34" FontFamily="Segoe WP Light"/>
+    </Grid>
+</UserControl>

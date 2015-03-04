@@ -1,0 +1,157 @@
+﻿<UserControl x:Class="PictureGallery.Views.PhotoCollectionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:slideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:pages="clr-namespace:PictureGallery.Pages"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="d"
+    x:Name="root"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480"
+    d:DesignWidth="480">
+
+    <UserControl.Resources>
+        <telerikPrimitives:WrapVirtualizationStrategyDefinition Orientation="Horizontal"
+                                                                x:Key="WrapStrategy"/>
+        <telerikPrimitives:StackVirtualizationStrategyDefinition x:Key="StackStrategy"/>
+        
+        <DataTemplate x:Key="SquareTemplate">
+            <slideView:PanAndZoomImage Width="136"
+                                       Height="136"
+                                       IsHitTestVisible="False"
+                                       Stretch="UniformToFill"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="0, 0, 12, 12"
+                                       Source="{Binding Sizes[0]}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RectangleTemplate">
+            <Grid Margin="0, 0, 0, 12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Border VerticalAlignment="Top">
+                    <slideView:PanAndZoomImage Stretch="None"
+                                               IsHitTestVisible="False"
+                                               Source="{Binding Sizes[0]}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+                </Border>
+                
+                <TextBlock Text="{Binding Title}"
+                           Grid.Column="1"
+                           Foreground="#FF22201E" 
+                           FontSize="32"
+                           FontFamily="Segoe WP SemiLight"
+                           TextWrapping="Wrap"
+                           Margin="12, -5, 12, 0"/>
+            </Grid>
+        </DataTemplate>
+
+        <pages:BoolToPhotoTemplateConverter x:Key="BoolToPhotoTemplateConverter"
+                                            SquareTemplate="{StaticResource SquareTemplate}"
+                                            RectangleTemplate="{StaticResource RectangleTemplate}"/>
+        
+        <pages:BoolToLayoutStrategyConverter x:Key="BoolToLayoutStrategyConverter"
+                                             StackStrategy="{StaticResource StackStrategy}"
+                                             WrapStrategy="{StaticResource WrapStrategy}"/>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          DataContext="{Binding PhotoList, ElementName=root}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+        
+            <StackPanel HorizontalAlignment="Left"
+                        Orientation="Horizontal"
+                        Margin="0, 0, 0, 40">
+                <Grid>
+                    <Ellipse StrokeThickness="3"
+                             Stroke="#05B8C3"/>
+                    <telerikPrimitives:RadImageButton x:Name="layoutMode"
+                                                      ButtonBehavior="ToggleButton"
+                                                      PressedStateImageSource="Images/wrap.png"
+                                                      RestStateImageSource="Images/stack.png"
+                                                      ButtonType="Custom"
+                                                      ButtonShape="Image"
+                                                      Foreground="#05B8C3"/>
+                </Grid>
+
+                <TextBlock x:Name="photoCount" 
+                           VerticalAlignment="Bottom"
+                           Margin="12, 0, 0, 0">
+                    <Run Text="{Binding PhotoCount, ElementName=root}"/>
+                    <Run Text="{Binding PhotoCount, ElementName=root, Converter={StaticResource PhotoCountConverter}}"/>
+                </TextBlock>
+            </StackPanel>
+        
+            <telerikPrimitives:RadDataBoundListBox x:Name="listBox"
+                                                   ItemsSource="{Binding Photos}"
+                                                   ItemTemplate="{Binding IsChecked, ElementName=layoutMode, Converter={StaticResource BoolToPhotoTemplateConverter}}"
+                                                   VirtualizationStrategyDefinition="{Binding IsChecked, ElementName=layoutMode, Converter={StaticResource BoolToLayoutStrategyConverter}}"
+                                                   SelectedItem="{Binding CurrentPhoto, Mode=TwoWay}"
+                                                   Grid.Row="1"
+                                                   Visibility="{Binding Photos, Converter={StaticResource NullToVisibilityConverter}}"
+                                                   DataVirtualizationMode="{Binding CanDownloadMore, Converter={StaticResource BoolToDataVirtualizationModeConverter}}"
+                                                   IsAsyncBalanceEnabled="True"
+                                                   ItemTap="OnItemTap"
+                                                   EmptyContent="{Binding EmptyContent, ElementName=root}"
+                                                   DataRequested="OnDataRequested">
+            <telerikPrimitives:RadDataBoundListBox.DataVirtualizationItemTemplate>
+                <DataTemplate>
+                    <ContentControl>
+                        <ContentControl.Template>
+                            <ControlTemplate TargetType="ContentControl">
+                                <Border>
+                                    <Grid HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Width="136"
+                                          Height="136">
+                                        <telerikPrimitives:RadBusyIndicator
+                                                           x:Name="PART_BusyIndicator" 
+                                                           VerticalAlignment="Stretch" 
+                                                           IsRunning="{Binding DataContext.Loading, ElementName=listBox}"
+                                                           HorizontalAlignment="Stretch"
+                                                           Content=""/>
+                                        <ContentPresenter x:Name="PART_LoadMoreContent" 
+                                                          HorizontalAlignment="Stretch" 
+                                                          VerticalAlignment="Stretch"
+                                                          Visibility="{Binding DataContext.Loading, ElementName=listBox, Converter={StaticResource BoolToVisibilityConverter}}">
+                                            <Grid>
+                                                <Ellipse Width="48"
+                                                         Height="48"
+                                                         StrokeThickness="3"
+                                                         Stroke="#05B8C3"/>
+                                                <Image Source="Images/LoadMore.png" 
+                                                       VerticalAlignment="Center" 
+                                                       HorizontalAlignment="Center" 
+                                                       x:Name="LoadMoreControl"
+                                                       Stretch="None"/>
+                                            </Grid>
+                                        </ContentPresenter>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </ContentControl.Template>
+                    </ContentControl>
+                </DataTemplate>
+            </telerikPrimitives:RadDataBoundListBox.DataVirtualizationItemTemplate>
+            </telerikPrimitives:RadDataBoundListBox>
+        </Grid>
+        
+        <telerikPrimitives:RadBusyIndicator IsRunning="{Binding Photos, Converter={StaticResource NullToBoolConverter}}"
+                                            x:Name="busyIndicator"
+                                            Content=""/>
+    </Grid>
+</UserControl>

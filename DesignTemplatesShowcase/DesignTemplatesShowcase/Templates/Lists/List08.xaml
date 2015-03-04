@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="Telerik.DesignTemplates.WP.Templates.Lists.List08"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:viewModels="clr-namespace:Telerik.DesignTemplates.WP.ViewModels"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.DataContext>
+        <viewModels:MainDataViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <DataTemplate x:Key="ListBoxItemTemplate">
+            <Grid Margin="0,0,0,9">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Height="139" Width="100" Source="{Binding ImageSource}" Stretch="UniformToFill" />
+                <StackPanel Grid.Column="1" Margin="11,0">
+                    <TextBlock Margin="0,-14,0,0" Text="{Binding Title}" TextWrapping="Wrap" FontFamily="Segoe WP SemiLight" FontSize="{StaticResource PhoneFontSizeExtraLarge}" Foreground="{StaticResource PhoneForegroundBrush}"/>
+                    <TextBlock Text="{Binding Information}" TextWrapping="Wrap" FontFamily="Segoe WP SemiLight" FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="{StaticResource PhoneForegroundBrush}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <Style TargetType="telerikPrimitives:ItemCheckBox" x:Key="DataBoundListBoxCheckBoxStyle">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="THUMBNAIL LIST WITH CHECKBOXES SUPPORT" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="page title" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1">
+            <telerikPrimitives:RadDataBoundListBox 
+                x:Name="DataBoundListBox" 
+                Margin="0,6,12,0" 
+                ItemsSource="{Binding Items}" 
+                IsCheckModeEnabled="True"
+                CheckBoxStyle="{StaticResource DataBoundListBoxCheckBoxStyle}"
+                ItemTemplate="{StaticResource ListBoxItemTemplate}"/>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="Telerik.DesignTemplates.WP.Controls.MainContent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:designTemplatesControls="clr-namespace:Telerik.DesignTemplates.WP.Controls"
+    xmlns:converters="clr-namespace:Telerik.DesignTemplates.WP.Converters"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.Resources>
+            <Style x:Key="HyperlinkButtonStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="#FF73A9D8"/>
+                <Setter Property="Padding" Value="2,0,2,0"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Top"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="HyperlinkButton">
+                            <Grid Cursor="{TemplateBinding Cursor}" Background="{TemplateBinding Background}">
+                                <vsm:VisualStateManager.VisualStateGroups>
+                                    <vsm:VisualStateGroup x:Name="CommonStates">
+                                        <vsm:VisualState x:Name="Normal"/>
+                                        <vsm:VisualState x:Name="MouseOver">
+                                            <Storyboard/>
+                                        </vsm:VisualState>
+                                        <vsm:VisualState x:Name="Pressed">
+                                            <Storyboard/>
+                                        </vsm:VisualState>
+                                        <vsm:VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="DisabledOverlay" Storyboard.TargetProperty="Visibility">
+                                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                                        <DiscreteObjectKeyFrame.Value>
+                                                            <Visibility>Visible</Visibility>
+                                                        </DiscreteObjectKeyFrame.Value>
+                                                    </DiscreteObjectKeyFrame>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </vsm:VisualState>
+                                    </vsm:VisualStateGroup>
+                                    <vsm:VisualStateGroup x:Name="FocusStates">
+                                        <vsm:VisualState x:Name="Focused">
+                                            <Storyboard/>
+                                        </vsm:VisualState>
+                                        <vsm:VisualState x:Name="Unfocused"/>
+                                    </vsm:VisualStateGroup>
+                                </vsm:VisualStateManager.VisualStateGroups>
+                                <TextBlock HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" x:Name="DisabledOverlay" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="Collapsed" Canvas.ZIndex="1" Foreground="#FFAAAAAA" Text="{TemplateBinding Content}"/>
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" x:Name="contentPresenter" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                <Rectangle x:Name="FocusVisualElement" IsHitTestVisible="false" Opacity="0" Stroke="#FF6DBDD1" StrokeThickness="1"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <converters:TemplatesListToCountConverter x:Key="TemplatesListToCountConverter"/>
+            <converters:ListToStringConverter x:Key="ListToStringConverter"/>
+            <DataTemplate x:Key="DataBoundListBoxItemTemplate">
+                <Grid Margin="0,0,0,25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <Rectangle Width="99" Margin="0,2,0,0" Height="4" Fill="{StaticResource CyanBrush}" />
+                        <Image Width="99" Height="165" Stretch="None" VerticalAlignment="Top" Source="{Binding Screenshot}"/>
+                    </StackPanel>
+                    <StackPanel Margin="12,0,12,0" Grid.Column="1">
+                        <TextBlock Text="{Binding ShortTitle}" LineStackingStrategy="BlockLineHeight" LineHeight="32" TextAlignment="Left" TextWrapping="Wrap" FontSize="{StaticResource PhoneFontSizeLarge}" Foreground="{StaticResource PhoneForegroundBrush}" FontFamily="Segoe WP Light"/>
+                        <TextBlock Margin="0,12,0,0" HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="{StaticResource CyanBrush}" Text="{Binding Tags, Converter={StaticResource ListToStringConverter}}"/>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+        </Grid.Resources>
+        
+        <controls:Panorama>
+            <controls:Panorama.Background>
+                <ImageBrush ImageSource="{StaticResource BackgroundImage}"/>
+            </controls:Panorama.Background>
+
+            <controls:PanoramaItem >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Margin="6,0,12,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Grid Width="184" Height="184" Margin="0,18,0,6">
+                            <Border BorderBrush="#5CE600" BorderThickness="2">
+                                <TextBlock Text="DESIGN TEMPLATES" Margin="8,12" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="23" Foreground="{StaticResource PhoneForegroundBrush}" FontSize="26" FontFamily="Segoe WP Black" TextAlignment="Left"  />
+                            </Border>
+                            <Image Margin="8,-1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Stretch="None" Source="{StaticResource DotsImage}" />
+                        </Grid>
+                        <designTemplatesControls:HomePageCategory Tap="ContentViewsCategory_Tap" Margin="6,24,6,9" Grid.Column="1" Count="{Binding AllTemplates,ConverterParameter=0,Converter={StaticResource TemplatesListToCountConverter}}" Title="content views" />
+                        <designTemplatesControls:HomePageCategory Tap="BuildingBlocksCategory_Tap" Margin="6" Grid.Row="1" Count="{Binding AllTemplates,ConverterParameter=1,Converter={StaticResource TemplatesListToCountConverter}}" Title="building blocks"/>
+                        <designTemplatesControls:HomePageCategory Tap="PagesCategory_Tap" Margin="6" Grid.Row="1" Grid.Column="1" Count="{Binding AllTemplates,ConverterParameter=2,Converter={StaticResource TemplatesListToCountConverter}}" Title="pages"/>
+
+                    </Grid>
+
+                    <TextBlock Margin="12,36,24,12" Grid.Row="2" Grid.ColumnSpan="2" FontSize="{StaticResource PhoneFontSizeLarge}" FontFamily="Segoe WP Light" Text="Telerik's Design Templates provide solutions to common design challenges." TextWrapping="Wrap" />
+                    <HyperlinkButton Margin="12" HorizontalAlignment="Left" Style="{StaticResource HyperlinkButtonStyle}" Grid.Row="3" Grid.ColumnSpan="2" FontSize="{StaticResource PhoneFontSizeMediumLarge}" Foreground="{StaticResource CyanBrush}" FontFamily="Segoe WP Semibold" Content="Learn more" Click="HyperlinkButton_Click" />
+
+                </Grid>
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="new">
+                <telerikPrimitives:RadDataBoundListBox Margin="16,0,-12,72" 
+                                                       x:Name="newItemsListBox"
+                                                       ItemTap="RadDataBoundListBox_ItemTap" 
+                                                       ItemTemplate="{StaticResource DataBoundListBoxItemTemplate}"/>
+            </controls:PanoramaItem>
+        </controls:Panorama>
+    </Grid>
+</UserControl>

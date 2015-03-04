@@ -1,0 +1,40 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Telerik.DesignTemplates.WP.Pages.TemplatePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:controls="clr-namespace:Telerik.DesignTemplates.WP.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.Row="1" x:Name="MainContent"/>
+        <controls:TemplateNavigationControl Margin="0,0,0,-15" SelectedTemplateChanged="TemplateNavigationControl_SelectedTemplateChanged" x:Name="NavigationControl"/>
+    </Grid>
+ 
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/Icons/EmptyIcon.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/Icons/EmptyIcon.png" Text="Button 2"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/Icons/EmptyIcon.png" Text="Button 3"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/Icons/EmptyIcon.png" Text="Button 4"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

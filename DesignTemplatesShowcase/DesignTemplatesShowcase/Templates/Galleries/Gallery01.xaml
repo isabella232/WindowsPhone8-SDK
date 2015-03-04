@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Telerik.DesignTemplates.WP.Templates.Galleries.Gallery01"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:viewModels="clr-namespace:Telerik.DesignTemplates.WP.ViewModels"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.DataContext>
+        <viewModels:MainDataViewModel/>
+    </UserControl.DataContext>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.Resources>
+            <DataTemplate x:Key="DataBoundListBoxItemTemplate">
+                <Grid Margin="0,0,12,12">
+                    <Image Width="99" Height="99" Source="{Binding ImageThumbnailSource}"/>
+                </Grid>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="IMAGE GALLERY 01" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="page title" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <telerikPrimitives:RadDataBoundListBox Margin="24,12,12,0" x:Name="dataBoundListBox" ItemTap="RadDataBoundListBox_ItemTap"
+                                                   ItemsSource="{Binding Items}"
+                                                   ItemTemplate="{StaticResource DataBoundListBoxItemTemplate}">
+                <telerikPrimitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
+                    <telerikPrimitives:WrapVirtualizationStrategyDefinition Orientation="Horizontal"/>
+                </telerikPrimitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
+            </telerikPrimitives:RadDataBoundListBox>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Telerik.DesignTemplates.WP.Templates.HubTiles.HubTile03"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:viewModels="clr-namespace:Telerik.DesignTemplates.WP.ViewModels"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.DataContext>
+        <viewModels:MainDataViewModel/>
+    </UserControl.DataContext>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="DASHBOARD NAVIGATION OF SLIDE TILES" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="page title" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid>
+                <telerikPrimitives:RadDataBoundListBox ItemsSource="{Binding Items}" Margin="6,0,6,0">
+                    <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
+                        <DataTemplate>
+                            <telerikPrimitives:RadSlideHubTile Margin="6" Width="136" Height="136" FontSize="16" Title="SlideHubTile">
+                                <telerikPrimitives:RadSlideHubTile.Picture>
+                                    <Image Source="{StaticResource HubTileImageSource}" Stretch="UniformToFill"/>
+                                </telerikPrimitives:RadSlideHubTile.Picture>
+                            </telerikPrimitives:RadSlideHubTile>
+                        </DataTemplate>
+                    </telerikPrimitives:RadDataBoundListBox.ItemTemplate>
+                    <telerikPrimitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
+                        <telerikPrimitives:WrapVirtualizationStrategyDefinition Orientation="Horizontal"/>
+                    </telerikPrimitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
+                </telerikPrimitives:RadDataBoundListBox>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

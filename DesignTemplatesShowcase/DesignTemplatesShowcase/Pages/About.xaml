@@ -1,0 +1,111 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Telerik.DesignTemplates.WP.Pages.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:Telerik.DesignTemplates.WP.ViewModels"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+
+    <telerikPrimitives:RadTransitionControl.Transition>
+        <telerikPrimitives:RadSlideTransition/>
+    </telerikPrimitives:RadTransitionControl.Transition>
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.DataContext>
+            <viewModels:CommandSampleViewModel/>
+        </Grid.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="DESIGN TEMPLATES" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="about" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+                <TextBlock 
+                    Text="Telerik Design Templates for Windows Phone" 
+                    TextWrapping="Wrap"
+                    Margin="12,0,12,0" 
+                    FontSize="{StaticResource PhoneFontSizeLarge}" 
+                    FontFamily="{StaticResource PhoneFontFamilySemiBold}"/>
+                <TextBlock 
+                    Text="Q1 2013" 
+                    Margin="12,0,12,0" 
+                    FontSize="{StaticResource PhoneFontSizeNormal}"/>
+            </StackPanel>
+
+            <TextBlock 
+                Grid.Row="1" 
+                Text="An application created to be a showcase of the Telerik Design Templates for Windows Phone"
+                Margin="12,24,12,0" 
+                TextWrapping="Wrap" 
+                Foreground="{StaticResource PhoneSubtleBrush}" 
+                FontSize="{StaticResource PhoneFontSizeNormal}" />
+            <HyperlinkButton 
+                Grid.Row="2" 
+                Content="Technical support/feedback email" 
+                Margin="0,12,0,0" 
+                HorizontalAlignment="Left" 
+                Foreground="{StaticResource CyanBrush}" 
+                FontSize="{StaticResource PhoneFontSizeNormal}" 
+                CommandParameter="wp7tasksapp@telerik.com"
+                Command="{Binding SendAnEmailCommand}"/>
+            <HyperlinkButton 
+                Grid.Row="3"
+                Content="Rate this app" 
+                Margin="0,12,0,0" 
+                HorizontalAlignment="Left" 
+                Foreground="{StaticResource CyanBrush}" 
+                FontSize="{StaticResource PhoneFontSizeNormal}" 
+                Command="{Binding RateThisAppCommand}"/>
+            <TextBlock Grid.Row="4" TextWrapping="Wrap" Margin="12"
+                Foreground="{StaticResource PhoneSubtleBrush}" 
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Text="The templates shown in this application use Telerik RadControls for Windows Phone. You can also check out the &quot;Telerik Examples&quot; application that illustrates the capabilities of each of these controls from the Marketplace."/>
+            <HyperlinkButton Grid.Row="5"
+                Content="Download Telerik Examples application" 
+                Margin="0,12,0,12" 
+                HorizontalAlignment="Left" 
+                Foreground="{StaticResource CyanBrush}" 
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Click="Button_Click"/>
+            <StackPanel Grid.Row="6" Margin="12,0,12,50" VerticalAlignment="Bottom">
+                <Image 
+                    Source="{StaticResource TelerikLogo}" 
+                    Stretch="None" 
+                    HorizontalAlignment="Left" />
+                <TextBlock 
+                    Text="2014" 
+                    Margin="0,12,0,0" 
+                    FontSize="{StaticResource PhoneFontSizeNormal}"/>
+                <TextBlock 
+                    Text="Telerik" 
+                    FontSize="{StaticResource PhoneFontSizeNormal}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

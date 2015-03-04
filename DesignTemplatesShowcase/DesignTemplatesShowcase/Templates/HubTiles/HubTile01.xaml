@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="Telerik.DesignTemplates.WP.Templates.HubTiles.HubTile01"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:viewModels="clr-namespace:Telerik.DesignTemplates.WP.ViewModels"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.DataContext>
+        <viewModels:MainDataViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="StandardCustomHubTileTemplate">
+            <telerikPrimitives:RadCustomHubTile FrontContent="{Binding}" Margin="6" Width="173" Height="173">
+                <telerikPrimitives:RadCustomHubTile.FrontContentTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Rectangle Fill="Gray"/>
+                        </Grid>
+                    </DataTemplate>
+                </telerikPrimitives:RadCustomHubTile.FrontContentTemplate>
+            </telerikPrimitives:RadCustomHubTile>
+        </DataTemplate>
+        <DataTemplate x:Key="FirstCustomHubTileTemplate">
+            <telerikPrimitives:RadCustomHubTile FrontContent="{Binding}" Margin="6" Width="173" Height="173">
+                <telerikPrimitives:RadCustomHubTile.FrontContentTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Image Source="{StaticResource HubTileImageSource}"/>
+                        </Grid>
+                    </DataTemplate>
+                </telerikPrimitives:RadCustomHubTile.FrontContentTemplate>
+            </telerikPrimitives:RadCustomHubTile>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="LIST OF CUSTOM HUB TILES FOR NAVIGATION DASHBOARD" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="page title" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+        <Image x:Name="grid" Source="grid.png" Visibility="Visible" Stretch="None" Grid.RowSpan="2" Opacity="0.2"/>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <telerikPrimitives:RadDataBoundListBox Margin="6,0" ItemsSource="{Binding Items}">
+                <telerikPrimitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
+                    <telerikPrimitives:WrapVirtualizationStrategyDefinition Orientation="Horizontal"/>
+                </telerikPrimitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
+                <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
+                    <DataTemplate>
+                        <telerikPrimitives:RadCustomHubTile FrontContent="{Binding}" Margin="6" Width="173" Height="173">
+                            <telerikPrimitives:RadCustomHubTile.FrontContentTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Rectangle Fill="Gray"/>
+                                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="12,8" Text="{Binding Title}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </telerikPrimitives:RadCustomHubTile.FrontContentTemplate>
+                        </telerikPrimitives:RadCustomHubTile>
+                    </DataTemplate>
+                </telerikPrimitives:RadDataBoundListBox.ItemTemplate>
+                <telerikPrimitives:RadDataBoundListBox.ListHeaderTemplate>
+                    <DataTemplate>
+                        <telerikPrimitives:RadCustomHubTile FrontContent="{Binding}" Margin="6" Width="173" Height="173">
+                            <telerikPrimitives:RadCustomHubTile.FrontContentTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Image Source="{StaticResource HubTileImageSource}" Stretch="None"/>
+                                        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="12,8" Text="Title" />
+                                    </Grid>
+                                </DataTemplate>
+                            </telerikPrimitives:RadCustomHubTile.FrontContentTemplate>
+                        </telerikPrimitives:RadCustomHubTile>
+                    </DataTemplate>
+                </telerikPrimitives:RadDataBoundListBox.ListHeaderTemplate>
+            </telerikPrimitives:RadDataBoundListBox>
+        </Grid>
+    </Grid>
+</UserControl>
